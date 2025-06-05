@@ -86,3 +86,25 @@ with coluna4:
     total_produtos_vendidos = df_filtrado['quantidade'].sum()
     st.metric("Produtos Vendidos", total_produtos_vendidos)
 
+# Gráficos
+
+# Gráfico de vendas ao longo do tempo
+df_filtrado['dia'] = df_filtrado['data_venda'].dt.to_period("D")
+vendas_por_dia = df_filtrado.groupby('dia').size()
+
+df_filtrado['dia'] = df_filtrado['data_venda'].dt.date
+vendas_por_dia = df_filtrado.groupby('dia').size()
+
+plt.figure(figsize=(10,5))
+plt.plot(vendas_por_dia.index, vendas_por_dia.values, marker='o')
+plt.xlabel("Data da Venda")
+plt.ylabel("Quantidade de Vendas")
+plt.title("Vendas ao longo do tempo")
+plt.xticks(rotation=45)
+st.pyplot(plt)
+
+# Produtos mais vendidos (Top 5 ou Top 10)
+# 5 produtos que mais venderam
+quantidade = df_filtrado.groupby('produto')['quantidade'].sum()
+
+

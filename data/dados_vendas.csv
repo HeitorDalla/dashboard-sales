@@ -4999,3 +4999,83 @@ data_venda,cliente,produto,quantidade,forma_pagamento,preco_unitario,valor_total
 2024-05-22 17:00:00,Cliente 76,Açaí 300ml,1,Cartão Crédito,10.0,10.0,Açaí
 2024-02-24 00:00:00,Cliente 194,Milkshake,2,Cartão Débito,12.0,24.0,Bebida
 2024-01-26 18:00:00,Cliente 46,Açaí 700ml,1,Dinheiro,20.0,20.0,Açaí
+2025-01-02 09:15:00,Cliente 301,Açaí Bowl,2,Pix,22.0,44.0,Açaí
+2025-01-02 10:40:00,Cliente 302,Banana Split,1,Cartão Crédito,18.0,18.0,Sobremesa
+2025-01-02 11:05:00,Cliente 303,Milkshake,3,Dinheiro,12.0,36.0,Bebida
+2025-01-03 14:30:00,Cliente 304,Sorvete Casquinha,2,Cartão Débito,5.0,10.0,Sorvete
+2025-01-04 09:00:00,Cliente 305,Açaí 300ml,3,Pix,10.0,30.0,Açaí
+2025-01-04 12:20:00,Cliente 306,Banana Split,2,Dinheiro,18.0,36.0,Sobremesa
+2025-01-05 08:50:00,Cliente 307,Milkshake,1,Cartão Crédito,12.0,12.0,Bebida
+2025-01-05 13:40:00,Cliente 308,Açaí 700ml,1,Cartão Débito,20.0,20.0,Açaí
+2025-01-06 10:15:00,Cliente 309,Sorvete Casquinha,3,Pix,5.0,15.0,Sorvete
+2025-01-06 15:10:00,Cliente 310,Açaí 500ml,2,Pix,15.0,30.0,Açaí
+2025-01-07 11:00:00,Cliente 311,Banana Split,3,Cartão Débito,18.0,54.0,Sobremesa
+2025-01-07 16:30:00,Cliente 312,Milkshake,2,Dinheiro,12.0,24.0,Bebida
+2025-01-08 09:45:00,Cliente 313,Sorvete Casquinha,1,Cartão Crédito,5.0,5.0,Sorvete
+2025-01-08 14:25:00,Cliente 314,Açaí Bowl,3,Cartão Crédito,22.0,66.0,Açaí
+2025-01-09 10:50:00,Cliente 315,Banana Split,2,Pix,18.0,36.0,Sobremesa
+2025-01-09 15:35:00,Cliente 316,Milkshake,1,Cartão Débito,12.0,12.0,Bebida
+2025-01-10 08:20:00,Cliente 317,Açaí 300ml,3,Dinheiro,10.0,30.0,Açaí
+2025-01-10 12:45:00,Cliente 318,Sorvete Casquinha,2,Pix,5.0,10.0,Sorvete
+2025-01-11 14:00:00,Cliente 319,Açaí 700ml,2,Cartão Crédito,20.0,40.0,Açaí
+2025-01-11 16:50:00,Cliente 320,Banana Split,1,Cartão Débito,18.0,18.0,Sobremesa
+2025-01-12 09:10:00,Cliente 321,Milkshake,2,Pix,12.0,24.0,Bebida
+2025-01-12 11:35:00,Cliente 322,Sorvete Casquinha,3,Dinheiro,5.0,15.0,Sorvete
+2025-01-13 13:50:00,Cliente 323,Açaí 500ml,1,Cartão Crédito,15.0,15.0,Açaí
+2025-01-13 16:10:00,Cliente 324,Banana Split,2,Cartão Débito,18.0,36.0,Sobremesa
+2025-01-14 08:45:00,Cliente 325,Açaí Bowl,3,Pix,22.0,66.0,Açaí
+2025-01-14 12:25:00,Cliente 326,Milkshake,1,Dinheiro,12.0,12.0,Bebida
+2025-01-15 10:05:00,Cliente 327,Sorvete Casquinha,2,Cartão Crédito,5.0,10.0,Sorvete
+2025-01-15 14:40:00,Cliente 328,Açaí 700ml,3,Pix,20.0,60.0,Açaí
+2025-01-16 09:30:00,Cliente 329,Banana Split,1,Cartão Débito,18.0,18.0,Sobremesa
+2025-01-16 15:15:00,Cliente 330,Milkshake,2,Dinheiro,12.0,24.0,Bebida
+2025-01-17 08:55:00,Cliente 331,Açaí 300ml,3,Cartão Crédito,10.0,30.0,Açaí
+2025-01-17 13:20:00,Cliente 332,Sorvete Casquinha,1,Pix,5.0,5.0,Sorvete
+2025-01-18 11:50:00,Cliente 333,Açaí Bowl,2,Dinheiro,22.0,44.0,Açaí
+2025-01-18 16:05:00,Cliente 334,Banana Split,3,Cartão Débito,18.0,54.0,Sobremesa
+2025-01-19 09:25:00,Cliente 335,Milkshake,1,Pix,12.0,12.0,Bebida
+2025-01-19 12:55:00,Cliente 336,Açaí 500ml,2,Cartão Crédito,15.0,30.0,Açaí
+2025-01-20 10:10:00,Cliente 337,Sorvete Casquinha,3,Dinheiro,5.0,15.0,Sorvete
+2025-01-20 15:45:00,Cliente 338,Açaí 700ml,1,Pix,20.0,20.0,Açaí
+2025-01-21 08:40:00,Cliente 339,Banana Split,2,Cartão Débito,18.0,36.0,Sobremesa
+2025-01-21 14:15:00,Cliente 340,Milkshake,3,Cartão Crédito,12.0,36.0,Bebida
+2025-01-22 09:05:00,Cliente 341,Açaí 300ml,1,Dinheiro,10.0,10.0,Açaí
+2025-01-22 13:55:00,Cliente 342,Sorvete Casquinha,2,Pix,5.0,10.0,Sorvete
+2025-01-23 11:30:00,Cliente 343,Açaí Bowl,3,Cartão Débito,22.0,66.0,Açaí
+2025-01-23 16:40:00,Cliente 344,Banana Split,1,Dinheiro,18.0,18.0,Sobremesa
+2025-01-24 08:15:00,Cliente 345,Milkshake,2,Pix,12.0,24.0,Bebida
+2025-01-24 12:50:00,Cliente 346,Açaí 500ml,3,Cartão Crédito,15.0,45.0,Açaí
+2025-01-25 10:35:00,Cliente 347,Sorvete Casquinha,1,Cartão Débito,5.0,5.0,Sorvete
+2025-01-25 15:25:00,Cliente 348,Açaí 700ml,2,Dinheiro,20.0,40.0,Açaí
+2025-01-26 09:00:00,Cliente 349,Banana Split,3,Pix,18.0,54.0,Sobremesa
+2025-01-26 14:35:00,Cliente 350,Milkshake,1,Cartão Crédito,12.0,12.0,Bebida
+2025-01-27 08:30:00,Cliente 351,Açaí 300ml,2,Cartão Débito,10.0,20.0,Açaí
+2025-01-27 13:45:00,Cliente 352,Sorvete Casquinha,3,Dinheiro,5.0,15.0,Sorvete
+2025-01-28 11:00:00,Cliente 353,Açaí Bowl,1,Pix,22.0,22.0,Açaí
+2025-01-28 16:20:00,Cliente 354,Banana Split,2,Cartão Crédito,18.0,36.0,Sobremesa
+2025-01-29 09:50:00,Cliente 355,Milkshake,3,Cartão Débito,12.0,36.0,Bebida
+2025-01-29 14:10:00,Cliente 356,Açaí 500ml,1,Dinheiro,15.0,15.0,Açaí
+2025-01-30 08:25:00,Cliente 357,Sorvete Casquinha,2,Pix,5.0,10.0,Sorvete
+2025-01-30 13:30:00,Cliente 358,Açaí 700ml,3,Cartão Crédito,20.0,60.0,Açaí
+2025-01-31 10:00:00,Cliente 359,Banana Split,1,Cartão Débito,18.0,18.0,Sobremesa
+2025-01-31 15:40:00,Cliente 360,Milkshake,2,Dinheiro,12.0,24.0,Bebida
+2025-02-01 09:20:00,Cliente 361,Açaí 300ml,3,Pix,10.0,30.0,Açaí
+2025-02-01 14:05:00,Cliente 362,Sorvete Casquinha,1,Cartão Crédito,5.0,5.0,Sorvete
+2025-02-02 08:45:00,Cliente 363,Açaí Bowl,2,Cartão Débito,22.0,44.0,Açaí
+2025-02-02 12:30:00,Cliente 364,Banana Split,3,Dinheiro,18.0,54.0,Sobremesa
+2025-02-03 10:50:00,Cliente 365,Milkshake,1,Pix,12.0,12.0,Bebida
+2025-02-03 15:15:00,Cliente 366,Açaí 500ml,2,Cartão Crédito,15.0,30.0,Açaí
+2025-02-04 09:10:00,Cliente 367,Sorvete Casquinha,3,Cartão Débito,5.0,15.0,Sorvete
+2025-02-04 13:55:00,Cliente 368,Açaí 700ml,1,Dinheiro,20.0,20.0,Açaí
+2025-02-05 11:40:00,Cliente 369,Banana Split,2,Pix,18.0,36.0,Sobremesa
+2025-02-05 16:20:00,Cliente 370,Milkshake,3,Cartão Crédito,12.0,36.0,Bebida
+2025-02-06 08:35:00,Cliente 371,Açaí 300ml,1,Cartão Débito,10.0,10.0,Açaí
+2025-02-06 14:10:00,Cliente 372,Sorvete Casquinha,2,Dinheiro,5.0,10.0,Sorvete
+2025-02-07 09:55:00,Cliente 373,Açaí Bowl,3,Pix,22.0,66.0,Açaí
+2025-02-07 13:25:00,Cliente 374,Banana Split,1,Cartão Crédito,18.0,18.0,Sobremesa
+2025-02-08 11:15:00,Cliente 375,Milkshake,2,Cartão Débito,12.0,24.0,Bebida
+2025-02-08 15:50:00,Cliente 376,Açaí 500ml,3,Dinheiro,15.0,45.0,Açaí
+2025-02-09 08:20:00,Cliente 377,Sorvete Casquinha,1,Pix,5.0,5.0,Sorvete
+2025-02-09 12:55:00,Cliente 378,Açaí 700ml,2,Cartão Crédito,20.0,40.0,Açaí
+2025-02-10 10:40:00,Cliente 379,Banana Split,3,Dinheiro,18.0,54.0,Sobremesa
+2025-02-10 14:30:00,Cliente 380,Milkshake,1,Pix,12.0,12.0,Bebida
