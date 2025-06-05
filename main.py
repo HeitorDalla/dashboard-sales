@@ -66,3 +66,23 @@ if cliente_selecionado != 'Todos': # o usuário clicou em uma das opções
     df_filtrado = df_filtrado[df_filtrado['cliente'] == cliente_selecionado]
 
 
+# Big Numbers
+
+coluna1, coluna2, coluna3, coluna4 = st.columns(4)
+
+with coluna1:
+    total_vendas = len(df_filtrado)
+    st.metric("Total de Vendas", total_vendas)
+
+with coluna2:
+    valor_total_medio = df_filtrado['valor_total'].mean()
+    st.metric("Valor Total Médio", valor_total_medio)
+
+with coluna3:
+    receita_total = df_filtrado['valor_total'].sum()
+    st.metric("Receita Total", receita_total)
+
+with coluna4:
+    total_produtos_vendidos = df_filtrado['quantidade'].sum()
+    st.metric("Produtos Vendidos", total_produtos_vendidos)
+
