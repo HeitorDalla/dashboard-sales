@@ -6,6 +6,7 @@ import seaborn as sn
 import matplotlib.pyplot as plt
 import csv
 
+
 # Configuração da página
 st.set_page_config(
     page_title="Dashboard Sorveteria",
@@ -16,6 +17,7 @@ st.set_page_config(
 df = pd.read_csv("data/dados_vendas.csv", sep=',', encoding='utf-8', parse_dates=['data_venda'])
 
 st.header("🍨 Dashboard Sorveteria - Análise de Vendas")
+
 
 
 # Filtros laterais para melhor organização
@@ -86,7 +88,9 @@ with coluna4:
     total_produtos_vendidos = df_filtrado['quantidade'].sum()
     st.metric("Produtos Vendidos", total_produtos_vendidos)
 
+
 # Gráficos
+
 
 # Gráfico de vendas ao longo do tempo
 df_filtrado['dia'] = df_filtrado['data_venda'].dt.to_period("D")
@@ -95,25 +99,51 @@ vendas_por_dia = df_filtrado.groupby('dia').size()
 df_filtrado['dia'] = df_filtrado['data_venda'].dt.date
 vendas_por_dia = df_filtrado.groupby('dia').size()
 
+fig, ax = plt.subplots()
+
 plt.figure(figsize=(10,5))
 plt.plot(vendas_por_dia.index, vendas_por_dia.values)
 plt.xlabel("Data da Venda")
 plt.ylabel("Quantidade de Vendas")
 plt.title("Vendas ao longo do tempo")
 plt.xticks(rotation=45)
-st.pyplot(plt)
+
+st.pyplot(fig)
 
 # Produtos mais vendidos (Top 5 ou Top 10)
-# 5 produtos que mais venderam
 quantidade = df_filtrado.groupby('produto')['quantidade'].sum().head(5)
 
-fig, ax = plt.subplots()
+fig1, ax1 = plt.subplots()
 
-ax.bar(list(quantidade.index), quantidade.values)
+ax1.bar(list(quantidade.index), quantidade.values)
 plt.xlabel("Produtos mais vendidos")
 plt.ylabel("Quantidade Vendida")
-plt.title("Produtos mais Vendidos")
+plt.title("Produtos")
 plt.xticks(rotation=45)
 plt.tight_layout()
 
-st.pyplot(fig)
+st.pyplot(fig1)
+
+# Categorias mais lucrativas
+valor_total_categorias = df_filtrado.groupby('categoria')['valor_total'].sum()
+
+
+
+# Gráficos de vendas por categoria
+vendas_categoria = df_filtrado.groupby('categoria')['quantidade'].sum()
+
+fig3, ax3 = plt.subplot()
+
+ax3.pie(list(vendas_categoria.index), vendas_categoria.values)
+plt.xlabel("Categorias")
+plt.ylabel("Quantidade de Vendas")
+plt.title("Vendas por Categoria")
+
+st.pyplot(fig3)
+
+
+# Resumo dos Gráficos
+
+# Bar - Gráficos de Barras (comparar valores entre si)
+# Plot - Gráfico de Linhas (1 variável ao longo do tempo)
+# Scatter - Gráfico de Dispersão (relação de variáveis em plano cartesiano)
