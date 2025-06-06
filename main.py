@@ -93,7 +93,7 @@ with coluna5:
 
 # Gráficos
 
-# Gráfico da evolução das vendas
+# Gráfico da evolução das vendas (varNumerica(frequencia) x varAgrupada)
 df_filtrado['dia'] = df_filtrado['data_venda'].dt.to_period("D")
 vendas_por_dia = df_filtrado.groupby('dia').size()
 
@@ -110,7 +110,7 @@ plt.xticks(rotation=45)
 
 st.pyplot(fig)
 
-# Produtos mais vendidos (Top 5 ou Top 10)
+# Produtos mais vendidos (Top 5 ou Top 10) (varNumerica(total) x varAgrupada)
 quantidade = df_filtrado.groupby('produto')['quantidade'].sum().head(5)
 
 fig1, ax1 = plt.subplots()
@@ -124,7 +124,7 @@ plt.tight_layout()
 
 st.pyplot(fig1)
 
-# Categorias mais vendidas
+# Categorias mais vendidas (varNumerica(total) x varAgrupada)
 valor_total_categorias = df_filtrado.groupby('categoria')['valor_total'].sum()
 
 fig2, ax2 = plt.subplots()
@@ -137,7 +137,7 @@ plt.xticks(rotation=45)
 
 st.pyplot(fig2)
 
-# Gráficos de vendas por categoria
+# Gráficos de vendas por categoria (varNumerica(frequencia) x varAgrupada)
 vendas_categoria = df_filtrado.groupby('categoria')['quantidade'].sum()
 
 fig3, ax3 = plt.subplots()
@@ -147,7 +147,7 @@ ax3.set_title("Vendas por Categoria")
 
 st.pyplot(fig3)
 
-# Gráficos de vendas por produto
+# Gráficos de vendas por produto (varNumerica(frequencia) x varAgrupada)
 vendas_produto = df_filtrado.groupby('produto')['quantidade'].sum()
 
 fig4, ax4 = plt.subplots()
@@ -158,6 +158,8 @@ plt.ylabel("Produtos")
 plt.xticks(rotation=45)
 
 st.pyplot(fig4)
+
+# Gráfico dos clientes que mais compram (varNumerica(total) x varAgrupada)
 
 
 # Resumo dos Gráficos
