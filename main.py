@@ -1,10 +1,8 @@
 import pandas as pd
 import streamlit as st
-import sqlite3
 from datetime import date, datetime
 import seaborn as sns
 import matplotlib.pyplot as plt
-import csv
 
 
 # Configuração da página
@@ -192,11 +190,6 @@ ax6.set_title("Distribuição do ticket médio por cliente")
 
 st.pyplot(fig6)
 
-# Clientes que mais compraram (varNumerica(total) x varAgrupada)
-
-
-
-
 
 # Resumo dos Gráficos
 
@@ -212,5 +205,7 @@ st.pyplot(fig6)
         # Matplotlib (boxplot) - deve lidar com valores ausentes antes, usando o dropna
         # Seaborn (boxplot) - lida com os valores ausentes nos bastidores
 
+
 # Gráficos agrupados
+
 # barplot - Gráficos de Barras Agrupadas (varNumerica x 2varAgrupadas)
