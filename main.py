@@ -100,9 +100,8 @@ vendas_por_dia = df_filtrado.groupby('dia').size()
 df_filtrado['dia'] = df_filtrado['data_venda'].dt.date
 vendas_por_dia = df_filtrado.groupby('dia').size()
 
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(figsize=(10, 5))
 
-plt.figure(figsize=(10,5))
 plt.plot(vendas_por_dia.index, vendas_por_dia.values)
 plt.xlabel("Data da Venda")
 plt.ylabel("Quantidade de Vendas")
@@ -117,18 +116,26 @@ quantidade = df_filtrado.groupby('produto')['quantidade'].sum().head(5)
 fig1, ax1 = plt.subplots()
 
 ax1.bar(list(quantidade.index), quantidade.values)
-plt.xlabel("Produtos mais vendidos")
+plt.xlabel("Produtos")
 plt.ylabel("Quantidade Vendida")
-plt.title("Produtos")
+plt.title("Produtos mais vendidos")
 plt.xticks(rotation=45)
 plt.tight_layout()
 
 st.pyplot(fig1)
 
-# Categorias mais lucrativas
+# Categorias mais vendidas
 valor_total_categorias = df_filtrado.groupby('categoria')['valor_total'].sum()
 
+fig2, ax2 = plt.subplots()
 
+ax2.bar(list(valor_total_categorias.index), valor_total_categorias.values)
+plt.xlabel("Categorias")
+plt.ylabel("Vendas")
+plt.title("Categorias mais vendidas")
+plt.xticks(rotation=45)
+
+st.pyplot(fig2)
 
 # Gráficos de vendas por categoria
 vendas_categoria = df_filtrado.groupby('categoria')['quantidade'].sum()
