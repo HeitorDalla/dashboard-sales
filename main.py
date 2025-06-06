@@ -4,6 +4,10 @@ from datetime import date, datetime
 import seaborn as sns
 import matplotlib.pyplot as plt
 
+df = pd.read_csv("data/dados_vendas.csv", sep=',', encoding='utf-8', parse_dates=['data_venda'])
+
+
+# Configurações Gerais
 
 # Configuração da página
 st.set_page_config(
@@ -12,18 +16,31 @@ st.set_page_config(
     layout="wide"
 )
 
-df = pd.read_csv("data/dados_vendas.csv", sep=',', encoding='utf-8', parse_dates=['data_venda'])
+# Estilo dos gráficos
+plt.style.use('seaborn-v0_8')
+sns.set_palette("husl")
 
-st.header("🍨 Dashboard Sorveteria - Análise de Vendas")
 
+# Página
 
+# Header mais estilizado
+st.title("🍨 Dashboard Sorveteria")
+st.markdown("### 📊 Análise Completa de Vendas")
+st.markdown("---")
 
 # Filtros laterais para melhor organização
 
-# Filtros de data
+# Sidebar com melhor organização
+st.sidebar.title("🔧 Filtros")
+st.sidebar.markdown("## Personalize sua análise:")
+
+# Seção de filtros de data
+st.sidebar.markdown("#### 📅 Período")
+col_data1, col_data2 = st.sidebar.columns(2)
+
 filtro_data_inicio = st.sidebar.date_input(
     'Data início',
-    value = df['data_venda'].min().date(), # Pega o valor mais antigo da coluna data_venda e o transforma em data, sem horario
+    value = df['data_venda'].min().date(),
     min_value = df['data_venda'].min().date(),
     max_value = df['data_venda'].max().date()
 )
@@ -38,22 +55,25 @@ filtro_data_fim = st.sidebar.date_input(
 # Filtro por categoria
 categorias = df['categoria'].unique()
 categoriasLista = ['Todas'] + list(categorias)
-categoria_selecionada = st.sidebar.selectbox("Categorias", categoriasLista)
+categoria_selecionada = st.sidebar.selectbox("🏷️ Categorias", categoriasLista)
 
 # Filtros por pagamentos
 pagamentos = df['forma_pagamento'].unique()
 pagamentosLista = ['Todos'] + list(pagamentos)
-pagamento_selecionado = st.sidebar.selectbox("Pagamentos", pagamentosLista)
+pagamento_selecionado = st.sidebar.selectbox("💳 Pagamentos", pagamentosLista)
 
 # Filtros por clientes
 clientes = df['cliente'].unique()
 clienteLista = ['Todos'] + list(clientes)
-cliente_selecionado = st.sidebar.selectbox("Clientes", clienteLista)
+cliente_selecionado = st.sidebar.selectbox("👥 Clientes", clienteLista)
 
 # Filtros por produto
 produtos = df['produto'].unique()
 produtos_lista = ['Todos'] + list(produtos)
-produto_selecionado = st.sidebar.selectbox("Produtos", produtos_lista)
+produto_selecionado = st.sidebar.selectbox("🍦 Produtos", produtos_lista)
+
+if st.sidebar.button("🔄 Resetar Filtros"):
+    pass # FINALIZAR
 
 # Filtro total
 df_filtrado = df[
