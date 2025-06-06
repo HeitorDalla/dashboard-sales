@@ -173,8 +173,16 @@ plt.title("Ticket médio dos pagamentos por categoria")
 
 st.pyplot(fig5)
 
-# Gráfico de ticket médio por forma de cliente por categoria (varNumerica(total) x varAgrupada)
+# Gráfico de ticket médio por forma de cliente (varNumerica(total) x varAgrupada)
+ticket_cliente = df_filtrado.groupby('cliente')['valor_total'].mean()
+ticket_cliente = ticket_cliente.sort_values(ascending=False).head(5)
 
+fig6, ax6 = plt.subplots()
+
+ax6.pie(ticket_cliente.values, labels=ticket_cliente.index, autopct='%1.1f%%') # autopct='%1.1f%%' adiciona a porcentagem com 1 casa decimal
+ax6.set_title("Distribuição do ticket médio por cliente")
+
+st.pyplot(fig6)
 
 # Clientes que mais compraram (varNumerica(total) x varAgrupada)
 
@@ -187,9 +195,9 @@ st.pyplot(fig5)
 
 # Gráficos comuns
 
-# Bar (Matplotlib) - Gráficos de Barras (comparar valores entre si)
-# Plot (Matplotlib) - Gráfico de Linhas (1 variável ao longo do tempo)
-# Scatter - Gráfico de Dispersão (relação de variáveis em plano cartesiano)
+# Bar (Matplotlib) - Gráficos de Barras (varNumerica x varAgrupada)
+# Plot (Matplotlib) - Gráfico de Linhas (varNumerica x varAgrupada - 1 variável ao longo do tempo)
+# Scatter - Gráfico de Dispersão (relação de variáveis em plano cartesiano de duas variáveis numéricas)
 # Hist - Gráfico de Histograma (distribuição de frequência dos valores de uma variável numérica)
 # Boxplot - Gráfico de Caixa (mostra estatísticas descritivas e a distribuição de quantidades de uma variável)
     # Diferença dos graficos de caixa do matplotlib e seaborn
