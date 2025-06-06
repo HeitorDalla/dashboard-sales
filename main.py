@@ -3,6 +3,8 @@ import streamlit as st
 from datetime import date, datetime
 import seaborn as sns
 import matplotlib.pyplot as plt
+import csv
+import sqlite3
 
 df = pd.read_csv("data/dados_vendas.csv", sep=',', encoding='utf-8', parse_dates=['data_venda'])
 
@@ -99,23 +101,25 @@ coluna1, coluna2, coluna3, coluna4, coluna5 = st.columns(5)
 
 with coluna1:
     total_cliente_unicos = len(df_filtrado['cliente'].unique())
-    st.metric("Clientes", total_cliente_unicos) 
+    st.metric("👥 Clientes Únicos", total_cliente_unicos) 
 
 with coluna2:
     total_vendas = len(df_filtrado)
-    st.metric("Total de Vendas", total_vendas)
+    st.metric("🛒 Total de Vendas", total_vendas)
 
 with coluna3:
     receita_total = df_filtrado['valor_total'].sum()
-    st.metric("Receita Total", receita_total)
+    st.metric("💰 Receita Total", receita_total)
 
 with coluna4:
     total_produtos_vendidos = df_filtrado['quantidade'].sum()
-    st.metric("Produtos Vendidos", total_produtos_vendidos)
+    st.metric("📦 Produtos Vendidos", total_produtos_vendidos)
 
 with coluna5:
     ticket_medio = df_filtrado['valor_total'].sum() / len(df_filtrado)
-    st.metric("Ticket Médio", f"R$ {ticket_medio:.2f}")
+    st.metric("🎯 Ticket Médio", f"R$ {ticket_medio:.2f}")
+
+st.markdown("---")
 
 # Gráficos
 
