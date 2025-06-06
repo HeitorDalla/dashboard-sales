@@ -2,7 +2,7 @@ import pandas as pd
 import streamlit as st
 import sqlite3
 from datetime import date, datetime
-import seaborn as sn
+import seaborn as sns
 import matplotlib.pyplot as plt
 import csv
 
@@ -110,7 +110,7 @@ plt.xticks(rotation=45)
 
 st.pyplot(fig)
 
-# Produtos mais vendidos (Top 5 ou Top 10) (varNumerica(total) x varAgrupada)
+# Produtos mais vendidos (Top 5 ou Top 10) (varNumerica(quantidade) x varAgrupada)
 quantidade = df_filtrado.groupby('produto')['quantidade'].sum().head(5)
 
 fig1, ax1 = plt.subplots()
@@ -118,13 +118,13 @@ fig1, ax1 = plt.subplots()
 ax1.bar(list(quantidade.index), quantidade.values)
 plt.xlabel("Produtos")
 plt.ylabel("Quantidade Vendida")
-plt.title("Produtos mais vendidos")
+plt.title("Quantidade total vendida por produto")
 plt.xticks(rotation=45)
 plt.tight_layout()
 
 st.pyplot(fig1)
 
-# Categorias mais vendidas (varNumerica(total) x varAgrupada)
+# Categorias mais vendidas (varNumerica(quantidade) x varAgrupada)
 valor_total_categorias = df_filtrado.groupby('categoria')['valor_total'].sum()
 
 fig2, ax2 = plt.subplots()
@@ -137,38 +137,64 @@ plt.xticks(rotation=45)
 
 st.pyplot(fig2)
 
-# Gráficos de vendas por categoria (varNumerica(frequencia) x varAgrupada)
+# Gráficos de vendas por categoria (varNumerica(quantidade) x varAgrupada)
 vendas_categoria = df_filtrado.groupby('categoria')['quantidade'].sum()
 
 fig3, ax3 = plt.subplots()
 
 ax3.pie(vendas_categoria.values, labels=vendas_categoria.index, autopct='%1.1f%%')
-ax3.set_title("Vendas por Categoria")
+ax3.set_title("Distribuição percentual das vendas por categoria")
 
 st.pyplot(fig3)
 
-# Gráficos de vendas por produto (varNumerica(frequencia) x varAgrupada)
+# Gráficos de vendas por produto (varNumerica(quantidade) x varAgrupada)
 vendas_produto = df_filtrado.groupby('produto')['quantidade'].sum()
 
 fig4, ax4 = plt.subplots()
 
 ax4.bar(vendas_produto.index, vendas_produto.values)
-plt.xlabel("Vendas")
-plt.ylabel("Produtos")
+plt.xlabel("Produtos")
+plt.ylabel("Quantidade vendida")
+plt.title("Total de vendas por produto")
 plt.xticks(rotation=45)
 
 st.pyplot(fig4)
 
-# Gráfico dos clientes que mais compram (varNumerica(total) x varAgrupada)
+# Gráfico de ticket médio por forma de pagamento por categoria (varNumerica(total) x varAgrupada)
+df_ticket = df_filtrado.groupby(['forma_pagamento', 'categoria'])['valor_total'].mean().reset_index()
+df_ticket.rename(columns={'valor_total': 'ticket_medio'}, inplace=True) # o inplace=true faz a alteração do nome diretamente no df_tickets sem precisar reatribuir
+
+fig5, ax5 = plt.subplots()
+
+sns.barplot(x='ticket_medio', y='forma_pagamento', hue='categoria', data=df_ticket, ax=ax5)
+plt.xlabel("Ticket Médio")
+plt.ylabel("Forma de Pagamento")
+plt.title("Ticket médio dos pagamentos por categoria")
+
+st.pyplot(fig5)
+
+# Gráfico de ticket médio por forma de cliente por categoria (varNumerica(total) x varAgrupada)
+
+
+# Clientes que mais compraram (varNumerica(total) x varAgrupada)
+
+
+
 
 
 # Resumo dos Gráficos
 
-# Bar - Gráficos de Barras (comparar valores entre si)
-# Plot - Gráfico de Linhas (1 variável ao longo do tempo)
+
+# Gráficos comuns
+
+# Bar (Matplotlib) - Gráficos de Barras (comparar valores entre si)
+# Plot (Matplotlib) - Gráfico de Linhas (1 variável ao longo do tempo)
 # Scatter - Gráfico de Dispersão (relação de variáveis em plano cartesiano)
 # Hist - Gráfico de Histograma (distribuição de frequência dos valores de uma variável numérica)
 # Boxplot - Gráfico de Caixa (mostra estatísticas descritivas e a distribuição de quantidades de uma variável)
     # Diferença dos graficos de caixa do matplotlib e seaborn
         # Matplotlib (boxplot) - deve lidar com valores ausentes antes, usando o dropna
         # Seaborn (boxplot) - lida com os valores ausentes nos bastidores
+
+# Gráficos agrupados
+# barplot - Gráficos de Barras Agrupadas (varNumerica x 2varAgrupadas)
