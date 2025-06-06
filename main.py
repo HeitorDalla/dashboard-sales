@@ -93,7 +93,7 @@ with coluna5:
 
 # Gráficos
 
-# Gráfico de vendas ao longo do tempo
+# Gráfico da evolução das vendas
 df_filtrado['dia'] = df_filtrado['data_venda'].dt.to_period("D")
 vendas_por_dia = df_filtrado.groupby('dia').size()
 
@@ -148,7 +148,16 @@ ax3.set_title("Vendas por Categoria")
 st.pyplot(fig3)
 
 # Gráficos de vendas por produto
+vendas_produto = df_filtrado.groupby('produto')['quantidade'].sum()
 
+fig4, ax4 = plt.subplots()
+
+ax4.bar(vendas_produto.index, vendas_produto.values)
+plt.xlabel("Vendas")
+plt.ylabel("Produtos")
+plt.xticks(rotation=45)
+
+st.pyplot(fig4)
 
 
 # Resumo dos Gráficos
@@ -156,3 +165,8 @@ st.pyplot(fig3)
 # Bar - Gráficos de Barras (comparar valores entre si)
 # Plot - Gráfico de Linhas (1 variável ao longo do tempo)
 # Scatter - Gráfico de Dispersão (relação de variáveis em plano cartesiano)
+# Hist - Gráfico de Histograma (distribuição de frequência dos valores de uma variável numérica)
+# Boxplot - Gráfico de Caixa (mostra estatísticas descritivas e a distribuição de quantidades de uma variável)
+    # Diferença dos graficos de caixa do matplotlib e seaborn
+        # Matplotlib (boxplot) - deve lidar com valores ausentes antes, usando o dropna
+        # Seaborn (boxplot) - lida com os valores ausentes nos bastidores
