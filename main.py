@@ -69,16 +69,15 @@ if cliente_selecionado != 'Todos': # o usuário clicou em uma das opções
 
 
 # Big Numbers
-
-coluna1, coluna2, coluna3, coluna4 = st.columns(4)
+coluna1, coluna2, coluna3, coluna4, coluna5 = st.columns(5)
 
 with coluna1:
-    total_vendas = len(df_filtrado)
-    st.metric("Total de Vendas", total_vendas)
+    total_cliente_unicos = len(df_filtrado['cliente'].unique())
+    st.metric("Clientes", total_cliente_unicos) 
 
 with coluna2:
-    valor_total_medio = df_filtrado['valor_total'].mean()
-    st.metric("Valor Total Médio", valor_total_medio)
+    total_vendas = len(df_filtrado)
+    st.metric("Total de Vendas", total_vendas)
 
 with coluna3:
     receita_total = df_filtrado['valor_total'].sum()
@@ -88,9 +87,11 @@ with coluna4:
     total_produtos_vendidos = df_filtrado['quantidade'].sum()
     st.metric("Produtos Vendidos", total_produtos_vendidos)
 
+with coluna5:
+    ticket_medio = df_filtrado['valor_total'].sum() / len(df_filtrado)
+    st.metric("Ticket Médio", f"R$ {ticket_medio:.2f}")
 
 # Gráficos
-
 
 # Gráfico de vendas ao longo do tempo
 df_filtrado['dia'] = df_filtrado['data_venda'].dt.to_period("D")
@@ -132,14 +133,15 @@ valor_total_categorias = df_filtrado.groupby('categoria')['valor_total'].sum()
 # Gráficos de vendas por categoria
 vendas_categoria = df_filtrado.groupby('categoria')['quantidade'].sum()
 
-fig3, ax3 = plt.subplot()
+fig3, ax3 = plt.subplots()
 
-ax3.pie(list(vendas_categoria.index), vendas_categoria.values)
-plt.xlabel("Categorias")
-plt.ylabel("Quantidade de Vendas")
-plt.title("Vendas por Categoria")
+ax3.pie(vendas_categoria.values, labels=vendas_categoria.index, autopct='%1.1f%%')
+ax3.set_title("Vendas por Categoria")
 
 st.pyplot(fig3)
+
+# Gráficos de vendas por produto
+
 
 
 # Resumo dos Gráficos
