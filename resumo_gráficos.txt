@@ -1,0 +1,18 @@
+# Resumo dos Gráficos
+
+
+# Gráficos comuns
+
+# Bar (Matplotlib) - Gráficos de Barras (varNumerica x varAgrupada)
+# Plot (Matplotlib) - Gráfico de Linhas (varNumerica x varAgrupada - 1 variável ao longo do tempo)
+# Scatter - Gráfico de Dispersão (relação de variáveis em plano cartesiano de duas variáveis numéricas)
+# Hist - Gráfico de Histograma (distribuição de frequência dos valores de uma variável numérica)
+# Boxplot - Gráfico de Caixa (mostra estatísticas descritivas e a distribuição de quantidades de uma variável)
+    # Diferença dos graficos de caixa do matplotlib e seaborn
+        # Matplotlib (boxplot) - deve lidar com valores ausentes antes, usando o dropna
+        # Seaborn (boxplot) - lida com os valores ausentes nos bastidores
+
+
+# Gráficos agrupados
+
+# barplot - Gráficos de Barras Agrupadas (varNumerica x 2varAgrupadas)

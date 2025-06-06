@@ -164,7 +164,7 @@ with col1:
 
 with col2:
     st.markdown("### 🏷️ Categorias (Valor Total)")
-    fig2, ax2 = plt.subplots()
+    fig2, ax2 = plt.subplots(figsize=(8, 5))
     ax2.bar(list(valor_total_categorias.index), valor_total_categorias.values)
     plt.xlabel("Categorias")
     plt.ylabel("Vendas")
@@ -172,61 +172,51 @@ with col2:
     plt.xticks(rotation=45)
     st.pyplot(fig2)
 
-# Gráficos de vendas por categoria (varNumerica(quantidade) x varAgrupada)
+st.markdown("---")
+
+# Gráficos de distribuições de vendas e produtos (varNumerica(quantidade) x varAgrupada)
+st.markdown("## 🧩 Distribuições")
 vendas_categoria = df_filtrado.groupby('categoria')['quantidade'].sum()
-
-fig3, ax3 = plt.subplots()
-ax3.pie(vendas_categoria.values, labels=vendas_categoria.index, autopct='%1.1f%%')
-ax3.set_title("Distribuição percentual das vendas por categoria")
-st.pyplot(fig3)
-
-# Gráficos de vendas por produto (varNumerica(quantidade) x varAgrupada)
 vendas_produto = df_filtrado.groupby('produto')['quantidade'].sum()
 
-fig4, ax4 = plt.subplots()
-ax4.bar(vendas_produto.index, vendas_produto.values)
-plt.xlabel("Produtos")
-plt.ylabel("Quantidade vendida")
-plt.title("Total de vendas por produto")
-plt.xticks(rotation=45)
-st.pyplot(fig4)
+col3, col4 = st.columns(2)
 
-# Gráfico de ticket médio por forma de pagamento por categoria (varNumerica(total) x varAgrupada)
+with col3:
+    fig3, ax3 = plt.subplots()
+    ax3.pie(vendas_categoria.values, labels=vendas_categoria.index, autopct='%1.1f%%')
+    ax3.set_title("Distribuição percentual das vendas por categoria")
+    st.pyplot(fig3)
+
+with col4:
+    fig4, ax4 = plt.subplots()
+    ax4.bar(vendas_produto.index, vendas_produto.values)
+    plt.xlabel("Produtos")
+    plt.ylabel("Quantidade vendida")
+    plt.title("Total de vendas por produto")
+    plt.xticks(rotation=45)
+    st.pyplot(fig4)
+
+st.markdown("---")
+
+# Gráfico de ticket médio por forma de pagamento e por cliente (varNumerica(total) x varAgrupada)
 df_ticket = df_filtrado.groupby(['forma_pagamento', 'categoria'])['valor_total'].mean().reset_index()
 df_ticket.rename(columns={'valor_total': 'ticket_medio'}, inplace=True) # o inplace=true faz a alteração do nome diretamente no df_tickets sem precisar reatribuir
 
-fig5, ax5 = plt.subplots()
-sns.barplot(x='ticket_medio', y='forma_pagamento', hue='categoria', data=df_ticket, ax=ax5)
-plt.xlabel("Ticket Médio")
-plt.ylabel("Forma de Pagamento")
-plt.title("Ticket médio dos pagamentos por categoria")
-st.pyplot(fig5)
-
-# Gráfico de ticket médio por forma de cliente (varNumerica(total) x varAgrupada)
 ticket_cliente = df_filtrado.groupby('cliente')['valor_total'].mean()
 ticket_cliente = ticket_cliente.sort_values(ascending=False).head(5)
 
-fig6, ax6 = plt.subplots()
-ax6.pie(ticket_cliente.values, labels=ticket_cliente.index, autopct='%1.1f%%') # autopct='%1.1f%%' adiciona a porcentagem com 1 casa decimal
-ax6.set_title("Distribuição do ticket médio por cliente")
-st.pyplot(fig6)
+col5, col6 = st.columns(2)
 
+with col5:
+    fig5, ax5 = plt.subplots()
+    sns.barplot(x='ticket_medio', y='forma_pagamento', hue='categoria', data=df_ticket, ax=ax5)
+    plt.xlabel("Ticket Médio")
+    plt.ylabel("Forma de Pagamento")
+    plt.title("Ticket médio dos pagamentos por categoria")
+    st.pyplot(fig5)
 
-# Resumo dos Gráficos
-
-
-# Gráficos comuns
-
-# Bar (Matplotlib) - Gráficos de Barras (varNumerica x varAgrupada)
-# Plot (Matplotlib) - Gráfico de Linhas (varNumerica x varAgrupada - 1 variável ao longo do tempo)
-# Scatter - Gráfico de Dispersão (relação de variáveis em plano cartesiano de duas variáveis numéricas)
-# Hist - Gráfico de Histograma (distribuição de frequência dos valores de uma variável numérica)
-# Boxplot - Gráfico de Caixa (mostra estatísticas descritivas e a distribuição de quantidades de uma variável)
-    # Diferença dos graficos de caixa do matplotlib e seaborn
-        # Matplotlib (boxplot) - deve lidar com valores ausentes antes, usando o dropna
-        # Seaborn (boxplot) - lida com os valores ausentes nos bastidores
-
-
-# Gráficos agrupados
-
-# barplot - Gráficos de Barras Agrupadas (varNumerica x 2varAgrupadas)
+with col6:
+    fig6, ax6 = plt.subplots()
+    ax6.pie(ticket_cliente.values, labels=ticket_cliente.index, autopct='%1.1f%%') # autopct='%1.1f%%' adiciona a porcentagem com 1 casa decimal
+    ax6.set_title("Distribuição do ticket médio por cliente")
+    st.pyplot(fig6)
