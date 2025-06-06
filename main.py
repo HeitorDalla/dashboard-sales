@@ -133,12 +133,13 @@ vendas_por_dia = df_filtrado.groupby('dia').size()
 df_filtrado['dia'] = df_filtrado['data_venda'].dt.date
 vendas_por_dia = df_filtrado.groupby('dia').size()
 
-fig, ax = plt.subplots(figsize=(10, 6))
-plt.plot(vendas_por_dia.index, vendas_por_dia.values)
-plt.xlabel("Data da Venda")
-plt.ylabel("Quantidade de Vendas")
-plt.title("Vendas ao longo do tempo", pad=20)
+fig, ax = plt.subplots(figsize=(12, 5))
+plt.plot(vendas_por_dia.index, vendas_por_dia.values, marker='o', linewidth=2)
+plt.xlabel("Data da Venda", fontsize=12)
+plt.ylabel("Quantidade de Vendas", fontsize=12)
+plt.title("Vendas ao longo do tempo", pad=20, fontsize=14)
 plt.xticks(rotation=45)
+plt.grid(True, linestyle='--', alpha=0.7)
 st.pyplot(fig)
 
 st.markdown("---")
@@ -153,23 +154,21 @@ col1, col2 = st.columns(2)
 
 with col1:
     st.markdown("### 🍦 Top 5 Produtos (Quantidade)")
-    fig1, ax1 = plt.subplots()
-    ax1.bar(list(quantidade.index), quantidade.values)
-    plt.xlabel("Produtos")
-    plt.ylabel("Quantidade Vendida")
-    plt.title("Quantidade total vendida por produto")
-    plt.xticks(rotation=45)
+    fig1, ax1 = plt.subplots(figsize=(8, 5))
+    sns.barplot(x=quantidade.values, y=quantidade.index, palette="viridis", ax=ax1)
+    plt.xlabel("Quantidade Vendida", fontsize=10)
+    plt.ylabel("")
+    plt.title("Quantidade total vendida por produto", pad=15, fontsize=12)
     plt.tight_layout()
-    st.pyplot(fig1)
+    st.pyplot(fig1)    
 
 with col2:
     st.markdown("### 🏷️ Categorias (Valor Total)")
     fig2, ax2 = plt.subplots(figsize=(8, 5))
-    ax2.bar(list(valor_total_categorias.index), valor_total_categorias.values)
-    plt.xlabel("Categorias")
-    plt.ylabel("Vendas")
-    plt.title("Categorias mais vendidas")
-    plt.xticks(rotation=45)
+    sns.barplot(x=valor_total_categorias.values, y=valor_total_categorias.index, palette="rocket", ax=ax2)
+    plt.xlabel("Valor Total", fontsize=10)
+    plt.ylabel("")
+    plt.title("Vendas por categoria", pad=15, fontsize=12)
     st.pyplot(fig2)
 
 st.markdown("---")
@@ -182,23 +181,26 @@ vendas_produto = df_filtrado.groupby('produto')['quantidade'].sum()
 col3, col4 = st.columns(2)
 
 with col3:
-    fig3, ax3 = plt.subplots()
-    ax3.pie(vendas_categoria.values, labels=vendas_categoria.index, autopct='%1.1f%%')
-    ax3.set_title("Distribuição percentual das vendas por categoria")
+    st.markdown("### 📊 Vendas por Categoria")
+    fig3, ax3 = plt.subplots(figsize=(8, 5))
+    ax3.pie(vendas_categoria.values, labels=vendas_categoria.index, 
+            autopct='%1.1f%%', startangle=90, colors=sns.color_palette("pastel"))
+    ax3.set_title("Distribuição por Categoria", pad=15, fontsize=12)
     st.pyplot(fig3)
 
 with col4:
-    fig4, ax4 = plt.subplots()
-    ax4.bar(vendas_produto.index, vendas_produto.values)
-    plt.xlabel("Produtos")
-    plt.ylabel("Quantidade vendida")
-    plt.title("Total de vendas por produto")
-    plt.xticks(rotation=45)
+    st.markdown("### 📈 Vendas por Produto")
+    fig4, ax4 = plt.subplots(figsize=(8, 5))
+    sns.barplot(x=vendas_produto.values, y=vendas_produto.index, palette="mako", ax=ax4)
+    plt.xlabel("Quantidade Vendida", fontsize=10)
+    plt.ylabel("")
+    plt.title("Vendas por Produto", pad=15, fontsize=12)
+    plt.tight_layout()
     st.pyplot(fig4)
 
 st.markdown("---")
 
-# Gráfico de ticket médio por forma de pagamento e por cliente (varNumerica(total) x varAgrupada)
+# Ticket Médio (varNumerica(total) x varAgrupada)
 df_ticket = df_filtrado.groupby(['forma_pagamento', 'categoria'])['valor_total'].mean().reset_index()
 df_ticket.rename(columns={'valor_total': 'ticket_medio'}, inplace=True) # o inplace=true faz a alteração do nome diretamente no df_tickets sem precisar reatribuir
 
@@ -208,15 +210,21 @@ ticket_cliente = ticket_cliente.sort_values(ascending=False).head(5)
 col5, col6 = st.columns(2)
 
 with col5:
-    fig5, ax5 = plt.subplots()
-    sns.barplot(x='ticket_medio', y='forma_pagamento', hue='categoria', data=df_ticket, ax=ax5)
-    plt.xlabel("Ticket Médio")
-    plt.ylabel("Forma de Pagamento")
-    plt.title("Ticket médio dos pagamentos por categoria")
+    st.markdown("### 💳 Por Pagamento/Categoria")
+    fig5, ax5 = plt.subplots(figsize=(8, 5))
+    sns.barplot(x='ticket_medio', y='forma_pagamento', hue='categoria', 
+                data=df_ticket, palette="flare", ax=ax5)
+    plt.xlabel("Ticket Médio (R$)", fontsize=10)
+    plt.ylabel("")
+    plt.title("Ticket Médio por Pagamento", pad=15, fontsize=12)
+    plt.legend(title='Categoria', bbox_to_anchor=(1.05, 1), loc='upper left')
+    plt.tight_layout()
     st.pyplot(fig5)
 
 with col6:
-    fig6, ax6 = plt.subplots()
-    ax6.pie(ticket_cliente.values, labels=ticket_cliente.index, autopct='%1.1f%%') # autopct='%1.1f%%' adiciona a porcentagem com 1 casa decimal
-    ax6.set_title("Distribuição do ticket médio por cliente")
+    st.markdown("### 👥 Por Cliente (Top 5)")
+    fig6, ax6 = plt.subplots(figsize=(8, 5))
+    ax6.pie(ticket_cliente.values, labels=ticket_cliente.index, 
+            autopct='%1.1f%%', startangle=90, colors=sns.color_palette("Set2"))
+    ax6.set_title("Ticket Médio por Cliente", pad=15, fontsize=12)
     st.pyplot(fig6)
