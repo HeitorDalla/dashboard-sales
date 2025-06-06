@@ -52,6 +52,11 @@ clientes = df['cliente'].unique()
 clienteLista = ['Todos'] + list(clientes)
 cliente_selecionado = st.sidebar.selectbox("Clientes", clienteLista)
 
+# Filtros por produto
+produtos = df['produto'].unique()
+produtos_lista = ['Todos'] + list(produtos)
+produto_selecionado = st.sidebar.selectbox("Produtos", produtos_lista)
+
 # Filtro total
 df_filtrado = df[
     (df['data_venda'].dt.date >= filtro_data_inicio) & 
@@ -66,6 +71,9 @@ if pagamento_selecionado != 'Todos': # o usuário clicou em uma das opções
 
 if cliente_selecionado != 'Todos': # o usuário clicou em uma das opções
     df_filtrado = df_filtrado[df_filtrado['cliente'] == cliente_selecionado]
+
+if produto_selecionado != 'Todos': # o usuário clicou em uma das opções
+    df_filtrado = df_filtrado[df_filtrado['produto'] == produto_selecionado]
 
 
 # Big Numbers
