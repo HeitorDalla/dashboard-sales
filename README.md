@@ -8,7 +8,7 @@
 <ul>
     <li><strong>Python v3.13.3</strong></li>
     <li><strong>Pandas v2.2.3</strong>: Manipula dados em tabelas (DataFrames). Usado para ler arquivos CSV e executar consultas SQL com retorno estruturado.</li>
-    <li><strong>Streamlit v1.45.1</strong>: Cria dashboards interativos com interface web. Usado para exibição de dados e controle de sessão do usuário.</li>
+    <li><strong>Streamlit v1.45.1</strong>: Cria dashboards interativos com interface web e foi usado prioritariamente para a exibição de dados.</li>
     <li><strong>Seaborn v0.13.2</strong>: Biblioteca base para criação de gráficos em Python.</li>
     <li><strong>Matplotlib v3.10.3</strong>: Biblioteca baseada no Matplotlib, mas com estilo mais bonito por padrão.</li>
 </ul>
